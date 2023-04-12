@@ -1,42 +1,58 @@
 <!-- As a heading -->
-<nav class="navbar  bg-light nav-config">
-  <span class=" mb-0 h1">Public Services</span>
+<nav class="navbar bg-light nav-config">
+  <span class="mb-0 h1">Public Services</span>
 </nav>
 
-
-<div class="container"> 
-
+<div class="container">
   <div class="section-form d-flex mb-5">
     <div>
-      <input type="date" [(ngModel)]="filtro.desde" class="form-control" placeholder="desde">
+      <input
+        type="date"
+        [(ngModel)]="filtro.desde"
+        class="form-control"
+        placeholder="desde"
+      />
     </div>
     <div>
-      <input type="date" [(ngModel)]="filtro.hasta" class="form-control" placeholder="hasta">
+      <input
+        type="date"
+        [(ngModel)]="filtro.hasta"
+        class="form-control"
+        placeholder="hasta"
+      />
     </div>
 
     <div>
       <button class="btn btn-success" (click)="consultar()">Consultar</button>
     </div>
     <div>
-      <button class="btn btn-info" (click)="limpiarCampos()">Limpiar campos</button>
+      <button class="btn btn-info" (click)="limpiarCampos()">
+        Limpiar Consulta
+      </button>
     </div>
   </div>
 
-<table class="table">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">Nombre Servicio</th>
-      <th scope="col">Fecha Uso</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let item of requestLoggerData | paginate : {itemsPerPage : itemByPage,  currentPage: pageActual}">
-      <td>{{item.nombreServicio}}</td>
-      <td>{{item.fechaUso | date:'medium'}}</td>
-    </tr>
-  </tbody>
-</table>
-<pagination-controls (pageChange)="pageActual = $event" (pageChange)="pageChanged($event)"></pagination-controls>
-
+  <table class="table">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">Nombre Servicio</th>
+        <th scope="col">Fecha Uso</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="
+          let item of requestLoggerData
+            | paginate : { itemsPerPage: itemByPage, currentPage: pageActual }
+        "
+      >
+        <td>{{ item.nombreServicio }}</td>
+        <td>{{ item.fechaUso | date : "medium" }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <pagination-controls
+    (pageChange)="pageActual = $event"
+    (pageChange)="pageChanged($event)"
+  ></pagination-controls>
 </div>
-
